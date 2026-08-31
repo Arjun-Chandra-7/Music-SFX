@@ -28,6 +28,24 @@ music-sfx serve
 
 Open `http://127.0.0.1:8765`. Drop in an authorized audio asset, audition it, choose a preset, adjust the processor, select the rights state and output format, then render. The source is never modified.
 
+## Register the autonomous agent skill
+
+From this checkout, run the one-command setup in the Python environment the agent will use:
+
+```bash
+python3 scripts/setup_agent.py
+```
+
+This installs the editable `music-sfx` CLI, copies the complete skill contract and its routed references into `$CODEX_HOME/skills/music-sfx` (or `~/.codex/skills/music-sfx` when `CODEX_HOME` is unset), and verifies the CLI, FFmpeg, ffprobe, and required skill files. Restart Codex afterward so `$music-sfx` is discovered and can be selected automatically.
+
+To inspect an existing installation without changing it:
+
+```bash
+python3 scripts/setup_agent.py --check
+```
+
+Set `CODEX_HOME` before setup or pass `--skill-dir /path/to/skills/music-sfx` when the agent uses a non-default skill registry. The installer updates only Music SFX files; it does not remove unrelated skills or configuration.
+
 For agent use:
 
 ```bash
@@ -71,6 +89,7 @@ See [SKILL.md](SKILL.md) for the autonomous-agent contract, [API.md](references/
 ```bash
 python3 -m unittest discover -s tests -v
 python3 -m music_sfx.cli --help
+python3 scripts/setup_agent.py --check
 ```
 
 The test suite validates policy boundaries, parameter ranges, filters, manifests, and a real render when FFmpeg is installed.
@@ -82,4 +101,3 @@ Music SFX does not acquire music, infer copyright ownership, publish media, or c
 ## License
 
 MIT. See [LICENSE](LICENSE).
-

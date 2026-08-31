@@ -15,6 +15,8 @@ Use this skill to turn a user-provided or already-authorized local audio asset i
 
 Before the first command in a checkout, install locally with `python3 -m pip install -e .`. FFmpeg and ffprobe must be available on `PATH`.
 
+When this repository has not yet been registered as a Codex skill, run `python3 scripts/setup_agent.py` from the repository and restart Codex. Once loaded from the skill registry, the CLI is already installed; do not rerun setup for ordinary audio jobs.
+
 ## Agent workflow
 
 1. Confirm that the input is a local audio path and classify its rights as `owned`, `licensed`, `public_domain`, or `unknown`. Do not infer ownership.
@@ -51,4 +53,3 @@ Use `--set KEY=VALUE` only for a reason tied to the request. Available keys and 
 - This skill creates audio assets only. Uploading, publishing, purchasing, scraping, and rights acquisition require separate authority.
 
 For parameter semantics and preset selection details, read [references/AUDIO_GUIDE.md](references/AUDIO_GUIDE.md) only when custom processing is needed.
-
