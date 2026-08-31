@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080a0c">
+  <title>Music SFX — Audio Intelligence</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="grain"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Music SFX home">
+      <span class="brand-mark"><i></i><i></i><i></i></span>
+      <span><b>MUSIC</b> SFX<small>AUDIO INTELLIGENCE</small></span>
+    </a>
+    <div class="transport" aria-label="Playback controls">
+      <button class="icon-button" id="rewind" title="Rewind" aria-label="Rewind">↶</button>
+      <button class="play" id="play" aria-label="Play or pause"><span>▶</span></button>
+      <div class="time"><strong id="currentTime">00:00.0</strong><small id="duration">/ 00:00.0</small></div>
+    </div>
+    <div class="header-actions">
+      <span class="health"><i id="healthDot"></i><span id="healthText">ENGINE CHECK</span></span>
+      <button class="ghost" id="historyButton">JOB HISTORY <b id="jobCount">0</b></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="workspace-head">
+      <div>
+        <p class="eyebrow">AUTONOMOUS AUDIO WORKBENCH <span>01</span></p>
+        <h1>Shape sound with<br><em>measured intent.</em></h1>
+      </div>
+      <div class="source-card" id="dropzone">
+        <input type="file" id="fileInput" accept="audio/*" hidden>
+        <div class="source-icon">＋</div>
+        <div><strong id="sourceName">DROP AUDIO OR BROWSE</strong><small id="sourceMeta">WAV · MP3 · FLAC · M4A · OGG · OPUS</small></div>
+        <button class="ghost mini" id="browse">CHOOSE FILE</button>
+      </div>
+    </section>
+
+    <section class="wave-panel">
+      <div class="panel-label"><span>01</span> SOURCE SIGNAL</div>
+      <canvas id="waveform" height="168" aria-label="Audio waveform"></canvas>
+      <div class="wave-empty" id="waveEmpty"><span>NO SIGNAL LOADED</span><small>Your source remains untouched. Every render creates a new, traceable asset.</small></div>
+      <div class="playhead" id="playhead"></div>
+      <div class="scale"><span>00:00</span><span>25%</span><span>50%</span><span>75%</span><span>END</span></div>
+    </section>
+
+    <section class="console">
+      <aside class="browser-panel">
+        <div class="panel-label"><span>02</span> SIGNAL CHAIN</div>
+        <label class="search"><span>⌕</span><input id="presetSearch" placeholder="Search presets" autocomplete="off"></label>
+        <div class="preset-list" id="presetList"></div>
+        <div class="rights-box">
+          <label for="rights">SOURCE RIGHTS</label>
+          <select id="rights">
+            <option value="owned">Owned by me</option>
+            <option value="licensed">Licensed</option>
+            <option value="public_domain">Public domain</option>
+            <option value="unknown">Unknown / review</option>
+          </select>
+        </div>
+      </aside>
+
+      <div class="rack">
+        <div class="rack-top">
+          <div><div class="panel-label"><span>03</span> PROCESSOR</div><h2 id="presetName">Clean Master</h2><p id="presetDescription">Subtle tonal balance and gentle glue.</p></div>
+          <div class="utility"><button class="ghost mini" id="reset">RESET</button><span class="autosave"><i></i> AUTO-LOG</span></div>
+        </div>
+        <div class="faders" id="faders"></div>
+        <div class="rack-footer">
+          <div class="intent"><label for="intent">PROCESSING INTENT</label><input id="intent" value="Polish for YouTube publication"></div>
+          <div class="format"><label for="format">DELIVERABLE</label><select id="format"><option value="wav">WAV · 24-BIT</option><option value="mp3">MP3 · 320K</option><option value="flac">FLAC</option><option value="m4a">M4A · 256K</option><option value="opus">OPUS · 192K</option></select></div>
+          <button class="render" id="render" disabled><span>RENDER MASTER</span><small>NEW TRACEABLE ASSET</small><b>→</b></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="status-strip">
+      <div><span>POLICY</span><strong id="policyStatus">READY</strong></div>
+      <div><span>ENGINE</span><strong>48 KHZ PIPELINE</strong></div>
+      <div><span>SOURCE</span><strong id="sourceStatus">AWAITING AUDIO</strong></div>
+      <div><span>OUTPUT</span><strong id="outputStatus">—</strong></div>
+    </section>
+  </main>
+
+  <aside class="drawer" id="drawer" aria-hidden="true">
+    <div class="drawer-head"><div><p class="eyebrow">IMMUTABLE OPERATIONS</p><h2>Job history</h2></div><button class="icon-button" id="closeDrawer">×</button></div>
+    <div id="jobs" class="jobs"><p class="muted">No renders yet.</p></div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+  <div class="toast" id="toast" role="status"></div>
+  <audio id="audio"></audio>
+  <script src="app.js"></script>
+</body>
+</html>

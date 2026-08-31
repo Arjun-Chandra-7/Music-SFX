@@ -1,0 +1,8 @@
+interface:
+  display_name: "Music SFX"
+  short_description: "Professional, traceable audio processing"
+  brand_color: "#D7FF43"
+  default_prompt: "Use $music-sfx to inspect and professionally master my authorized audio while preserving its source and provenance."
+policy:
+  allow_implicit_invocation: true
+

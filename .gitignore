@@ -1,0 +1,9 @@
+.venv/
+.music-sfx/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.DS_Store
+Agentic_YouTube_Evolution_System_Main_Context.docx
